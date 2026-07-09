@@ -1,13 +1,13 @@
 services:
   postgres:
-    image: postgres:17
-    container_name: ai_prompt_postgres
+    image: postgis/postgis:17-master
+    container_name: LangZ
     restart: unless-stopped
 
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: ai_prompt_manager
+      POSTGRES_DB: LangZ
 
     ports:
       - "5432:5432"
@@ -16,7 +16,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d ai_prompt_manager"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d LangZ"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -24,4 +24,4 @@ services:
 volumes:
   postgres_data:
 
-  # psql -h localhost -p 5432 -U postgres -d ai_prompt_manager
+  # psql -h localhost -p 5432 -U postgres -d LangZ

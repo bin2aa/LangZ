@@ -1,0 +1,16 @@
+server:
+  port: "8080"
+  read_timeout: 10
+  write_timeout: 10
+
+database:
+  host: "localhost"
+  port: "5432"
+  user: "postgres"
+  password: "postgres"
+  dbname: "LangZ"
+  sslmode: "disable"
+
+jwt:
+  secret: "dev-secret-key-change-in-production"
+  expire_hour: 72

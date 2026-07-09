@@ -1,0 +1,62 @@
+erDiagram
+    USERS ||--o{ POSTS : "đăng bài"
+    USERS ||--o{ GROUP_MEMBERS : "tham gia"
+    USERS ||--o{ GROUPS : "tạo nhóm"
+    USERS ||--o{ NOTIFICATIONS : "nhận thông báo"
+    GROUPS ||--o{ GROUP_MEMBERS : "có thành viên"
+    GROUPS ||--o{ POSTS : "chứa bài đăng"
+    POSTS ||--o{ NOTIFICATIONS : "phát sinh thông báo"
+
+    USERS {
+        uuid id PK
+        varchar full_name
+        varchar phone UK
+        varchar email UK
+        varchar password_hash
+        text avatar_url
+        varchar address_text
+        geography location "GiST index"
+        boolean is_verified
+        timestamptz created_at
+        timestamptz updated_at
+    }
+
+    GROUPS {
+        uuid id PK
+        varchar name
+        text description
+        geography center_location "GiST index"
+        integer radius_meters
+        uuid created_by FK
+        timestamptz created_at
+    }
+
+    GROUP_MEMBERS {
+        uuid group_id PK_FK
+        uuid user_id PK_FK
+        timestamptz joined_at
+    }
+
+    POSTS {
+        uuid id PK
+        uuid user_id FK
+        uuid group_id FK "nullable"
+        enum type "lost_found | give_away | alert | general | service_request"
+        varchar title
+        text content
+        geography location "GiST index"
+        text_array image_urls
+        boolean is_resolved
+        timestamptz expires_at "nullable"
+        timestamptz created_at
+        timestamptz updated_at
+    }
+
+    NOTIFICATIONS {
+        uuid id PK
+        uuid user_id FK
+        uuid post_id FK
+        varchar message
+        boolean is_read
+        timestamptz created_at
+    }

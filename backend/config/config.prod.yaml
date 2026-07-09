@@ -1,0 +1,16 @@
+server:
+  port: "8080"
+  read_timeout: 10
+  write_timeout: 10
+
+database:
+  host: "localhost"
+  port: "5432"
+  user: "postgres"
+  password: "${DB_PASSWORD}"
+  dbname: "neighborhood_app"
+  sslmode: "require"
+
+jwt:
+  secret: "${JWT_SECRET}"
+  expire_hour: 24
