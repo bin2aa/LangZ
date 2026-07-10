@@ -24,8 +24,13 @@ Build a complete RESTful CRUD API for a neighborhood community app using Go Gin 
 ## Commands
 
 ```bash
+# From the repo root, enter the Go module first
+cd backend
+
 # Run database
+cd ..
 docker compose up -d
+cd backend
 
 # Run backend
 go run ./cmd/api
@@ -36,7 +41,7 @@ go build ./cmd/api
 # Test
 go test ./... -v
 
-# Lint
+# Lint (requires golangci-lint to be installed)
 golangci-lint run ./...
 ```
 

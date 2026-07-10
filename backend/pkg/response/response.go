@@ -15,10 +15,17 @@ type Pagination struct {
 	TotalPages int `json:"total_pages"`
 }
 
+// SuccessResponse is the standard success response body
 type SuccessResponse struct {
 	Data       interface{} `json:"data,omitempty"`
 	Pagination *Pagination `json:"pagination,omitempty"`
 }
+
+// APIResponse is an alias for SuccessResponse, used for Swagger annotations compatibility
+type APIResponse = SuccessResponse
+
+// PaginatedResponse is an alias for SuccessResponse, used for Swagger annotations compatibility
+type PaginatedResponse = SuccessResponse
 
 type ErrorResponse struct {
 	Error ErrorDetail `json:"error"`

@@ -13,7 +13,7 @@ import (
 )
 
 // scalarHTML is the Scalar API Reference UI HTML page.
-// It loads the OpenAPI spec from /swagger.json and renders the interactive UI.
+// It loads the generated OpenAPI spec from /swagger.json and renders the interactive UI.
 const scalarHTML = `<!doctype html>
 <html>
 <head>
@@ -53,7 +53,7 @@ func Setup(
 	db.Use(gin.Logger())
 	db.Use(gin.Recovery())
 
-	// Scalar API Reference UI
+	// API docs
 	db.StaticFile("/swagger.json", "docs/swagger.json")
 	db.GET("/docs", func(c *gin.Context) {
 		c.Header("Content-Type", "text/html; charset=utf-8")
